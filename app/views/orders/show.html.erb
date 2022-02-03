@@ -1,5 +1,5 @@
 <section class="orders-show">
-<%# <% raise @order.line_items.inspect %>
+<%# <% raise @products.where(id: 1).inspect %> %>
 
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
@@ -7,6 +7,9 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <p>A confirmation email will be sent to <%= @order.email %> shortly!</p>
+
+  </div>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -16,7 +19,7 @@
         </tr>
       </thead>
       <% @order.line_items.each do |item| %>
-        <%= render 'line', item: item %>
+        <%= render 'line', item: item, product: @products.where(id: item.product_id)[0] %>
       <% end %>
       <tfoot>
         <tr>
@@ -29,9 +32,6 @@
         </tr>
       </tfoot>
     </table>
-
-    <p>A confirmation email will be sent to <%= @order.email %> shortly!</p>
-  </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
