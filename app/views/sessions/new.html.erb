@@ -2,8 +2,8 @@
 
 <%= form_tag '/login' do %>
 
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
+  Email: <%= text_field_tag :email, '', required: true %>
+  Password: <%= password_field_tag :password, '', required: true %>
   <%= submit_tag "Submit" %>
 
 <% end %>
